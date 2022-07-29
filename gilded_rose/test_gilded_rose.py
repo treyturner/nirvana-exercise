@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+import sys
 
 from gilded_rose import Item, GildedRose
 
@@ -35,9 +35,20 @@ def test_gilded_rose(days=1):
             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=9, quality=50),
             Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=4, quality=50),
             Item(name="Conjured Mana Cake", sell_in=2, quality=4),  # <-- :O
-            ],
+        ],
+        [
+            Item(name="+5 Dexterity Vest", sell_in=8, quality=18),
+            Item(name="Aged Brie", sell_in=0, quality=2),
+            Item(name="Elixir of the Mongoose", sell_in=3, quality=5),
+            Item(name="Sulfuras, Hand of Ragnaros", sell_in=0, quality=80),
+            Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=80),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=13, quality=22),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=8, quality=50),
+            Item(name="Backstage passes to a TAFKAL80ETC concert", sell_in=3, quality=50),
+            Item(name="Conjured Mana Cake", sell_in=1, quality=2),  # <-- :O
+        ],
     ]
-    assert days == len(updated_items), "TODO: handle more days"
+    assert days <= len(updated_items), "TODO: handle more days"
     for day in range(days):
         gilded_rose.update_quality()
         for item, updated_item in zip(gilded_rose.items, updated_items[day]):
@@ -45,4 +56,5 @@ def test_gilded_rose(days=1):
 
 
 if __name__ == "__main__":
-    test_gilded_rose(1)
+    days = int(sys.argv[1]) if len(sys.argv) > 1 else 1
+    test_gilded_rose(days)
