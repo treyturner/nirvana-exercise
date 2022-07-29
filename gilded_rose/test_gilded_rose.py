@@ -3,6 +3,14 @@
 from gilded_rose import Item, GildedRose
 
 
+def assert_same_items(item1: Item, item2: Item):
+    assert (
+        item1.name == item2.name
+        and item1.sell_in == item2.sell_in
+        and item1.quality == item2.quality
+    ), f"{item1} != {item2}"
+
+
 def test_gilded_rose(days=1):
     items = [
              Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
@@ -32,7 +40,8 @@ def test_gilded_rose(days=1):
     assert days == len(updated_items), "TODO: handle more days"
     for day in range(days):
         gilded_rose.update_quality()
-        assert gilded_rose.items == updated_items[day], f"\n{items} \n!= \n{updated_items}"
+        for item, updated_item in zip(gilded_rose.items, updated_items[day]):
+            assert_same_items(item, updated_item)
 
 
 if __name__ == "__main__":
