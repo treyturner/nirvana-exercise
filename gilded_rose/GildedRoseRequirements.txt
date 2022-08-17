@@ -15,8 +15,9 @@ we can begin selling a new category of items. First an introduction to our syste
 	- Once an item goes beyond its SellIn date, its value decreases twice as fast
 	- There are certain special items that behave differently.
 
-We have recently signed a new supplier and want to update our system to be able to handle more
-special items with different behavior.
+We have recently signed a new supplier and want to be able to quickly update our system handle new
+special items with different behavior -- for example, we'll have an item that degrades in quality twice as fast
+as normal.
 
 Feel free to make any changes to the UpdateQuality method and add any new code as long as everything
 still works correctly. However, do not alter the Item class or Items property as those belong to the
